@@ -1,12 +1,14 @@
 //i just want to apologize in advance for using break statements <3
+import java.util.Arrays;
 import java.util.Scanner;
 public class Player {
+    static Scanner scan = new Scanner(System.in);
     private String name;
     private String input = "null";
     private int total = 0;
     private int turnTotal = 0;
-    Scanner scan = new Scanner(System.in);
     Dice dice = new Dice();
+    String[] RorH = {"R", "H"};
     final String RobotName = "Ollie The Computer";
 
 
@@ -17,7 +19,7 @@ public class Player {
     public String getName() {
       return name;
     }
-
+    
     public int getTotal() {
       return total;
     }
@@ -71,10 +73,23 @@ public class Player {
     		return false;
     	}
     	System.out.print("\tWould you like to roll or hold? (R or H):\t"); //ask if the user would like to roll or hold
-    	input = scan.nextLine();
+        input = inputProtection(RorH); //get input from scanner
     	System.out.println();
     	if (input.equals("R")) //if user inputs 'R', go back to the main loop otherwise end the turn
     		return true;
     	return false;
       }
+    
+    private static String inputProtection(String[] allowed) {
+  		boolean contains = false;
+  		String input = " ";
+  		while (contains == false) {
+  			input = scan.next();
+  	    	contains = Arrays.stream(allowed).anyMatch(input::equals);
+  	    	if (contains == false) {
+  	    		System.out.print("\tPlease try again:\t\t\t\t");
+  	    	}
+  		}	
+  		return input;
+    }
   }

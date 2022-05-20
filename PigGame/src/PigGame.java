@@ -1,19 +1,23 @@
 import java.util.Scanner;
+import java.util.Arrays;
 public class PigGame {
+   static Scanner scan = new Scanner(System.in);
   public static void main(String[] args) {
-    Scanner scan = new Scanner(System.in);
     String input = "null"; //temporary String for user input
     final String RobotName = "Ollie The Computer";
+    String[] playerInputProtection = {"1", "2"};
 
     System.out.println("Welcome to the Game of Pig!");
     System.out.print("How many Players? (1 or 2):\t");
   
-    input = scan.nextLine(); //get input from scanner
+    input = inputProtection(playerInputProtection); //get input from scanner
     Player player1;
     Player player2;
+
     
     if(input.equals("2")) {
     	System.out.print("Enter Player 1 Name:\t\t");
+    	input = scan.nextLine();
     	input = scan.nextLine();
     	player1 = new Player (input);
     	System.out.print("Enter Player 2 Name:\t\t");
@@ -21,8 +25,9 @@ public class PigGame {
     	player2 = new Player (input);
     	System.out.println();
     }
-    else{
+    else {
     	System.out.print("Enter Your Name:\t\t");
+    	input = scan.nextLine();
     	input = scan.nextLine();
     	player1 = new Player(input);
     	player2 = new Player(RobotName);
@@ -57,5 +62,18 @@ public class PigGame {
     	else //if player does not want to play again
     		System.exit(0); //terminate the program
     }
+  }
+
+  private static String inputProtection(String[] allowed) {
+		boolean contains = false;
+		String input = " ";
+		while (contains == false) {
+			input = scan.next();
+	    	contains = Arrays.stream(allowed).anyMatch(input::equals);
+	    	if (contains == false) {
+	    		System.out.print("Please try again: ");
+	    	}
+		}	
+		return input;
   }
 }
