@@ -1,11 +1,12 @@
 import java.util.Scanner;
 import java.util.Arrays;
 public class PigGame {
-   static Scanner scan = new Scanner(System.in);
+  static Scanner scan = new Scanner(System.in);
   public static void main(String[] args) {
     String input = "null"; //temporary String for user input
     final String RobotName = "Ollie The Computer";
-    String[] playerInputProtection = {"1", "2"};
+    final String[] playerInputProtection = {"1", "2"};
+    final String[] YorN = {"Y", "N"};
 
     System.out.println("Welcome to the Game of Pig!");
     System.out.print("How many Players? (1 or 2):\t");
@@ -53,8 +54,8 @@ public class PigGame {
     	else if (player2.getTotal() >=100) //if player 2 won, show that they won
     		System.out.println(player2.getName()+" wins!");
     	
-    	System.out.print("\nPress Y to play again, Press any other character to quit:\t"); //ask to play again
-    	input = scan.nextLine();
+    	System.out.print("\nPress Y to play again, N to quit:\t"); //ask to play again
+    	input = inputProtection(YorN);
     	if (input.equals("Y")) { //if the player wants to play again, reset the totals and go back to the main loop
     		player1.resetTotal();
     		player2.resetTotal();
