@@ -62,7 +62,7 @@ public class Player {
     }
 
     public boolean rollAgain(){
-    	if (name.equals(RobotName)) { //if this is the computer
+    	if (name == RobotName) { //if this is the computer
     		try {
 				Thread.sleep(1500); //wait for 1500ms
 			} catch (InterruptedException e) {
